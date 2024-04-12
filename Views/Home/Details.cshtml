@@ -1,0 +1,43 @@
+﻿@model FPTBook.Models.Book
+@{
+    ViewData["Title"] = "Book Details";
+    Layout = "~/Views/Shared/_Details.cshtml";
+}
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4"> 
+                               
+                                <img id="main-image" src="~/uploads/@Html.DisplayFor(model => model.Image)"
+                                    width="250" /> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <h5 class="text-uppercase mt-2">@Html.DisplayFor(model => model.Name)</h5>
+                            <div class="price d-flex flex-row align-items-center"> <span class="act-price mt-2">Price:
+                                    $@Html.DisplayFor(model => model.Price)</span></div>
+                        </div>
+                        <p class="about mb-0 ml-4">@Html.DisplayFor(model => model.Description)</p>
+                        <div class="cart mt-4 align-items-center">
+                            <a asp-controller="Home" asp-action="Index" type="button" class="btn btn-primary text-uppercase mr-2 px-4">Back</a>
+                            @if (User.Identity?.IsAuthenticated ?? false)
+                            {
+                                <a class="btn btn-danger text-uppercase mr-2 px-4" asp-controller="Cart" asp-action="Create" asp-route-id="@Model?.Id">Add to Cart</a>
+                            }else{
+                                <a class="btn btn-danger text-uppercase mr-2 px-4" asp-area="Identity" asp-page="/Account/Login">Add to Cart</a>                            
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

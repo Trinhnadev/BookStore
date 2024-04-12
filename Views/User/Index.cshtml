@@ -1,0 +1,54 @@
+@model List<FPTBook.Models.UserRoleViewModel>
+
+@{
+    ViewData["Title"] = "User List";
+    Layout = "~/Views/Shared/adminLO.cshtml";
+}
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <div class="card mb-4 mt-5">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            List of Users
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table-success">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var userWithRoles in Model)
+                    {
+                        <tr>
+                            <td>@userWithRoles.User.UserName</td>
+                            <td>@userWithRoles.User.Email</td>
+                            <td>@string.Join(", ", userWithRoles.Roles)</td>
+                            <td>
+                                <a asp-action="Delete" onclick="return confirm('Are you sure?')" asp-route-id="@userWithRoles.User.Id"><i
+                                        class="fas fa-trash-alt"></i></a> |
+                                        @if(User.IsInRole("Admin")){
+                                            <a asp-action="ManageRoles" asp-route-id="@userWithRoles.User.Id"><i class="fas fa-cogs"></i></a>
+                                        }
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

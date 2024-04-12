@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Create Role";
+    Layout = "~/Views/Shared/adminLO.cshtml";
+}
+
+@model FPTBook.Models.CreateRoleViewModel
+
+<h3 class="text-center mt-2 fw-bold">
+    <a asp-action="Index"><i class="float-start fas fa-arrow-left"></i></a>
+    Create Role
+</h3>
+<hr />
+<form asp-action="Create">
+    <div class="form-group mb-2">
+        <label for="roleName" class="mb-2">Role Name</label>
+        <input asp-for="roleName" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

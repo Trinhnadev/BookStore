@@ -1,0 +1,66 @@
+﻿@model IEnumerable<FPTBook.Models.Book>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Homepage.cshtml";
+}
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<div class="site-section p-0 mt-5" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-2">
+                <h1 class="text-white serif text-uppercase mb-4">Meet Your Next Book</h1>
+                <p class="text-white mb-5">Books open doors to new worlds, knowledge, and endless imagination.</p>
+                @* <p><a href="#list-section" class="btn btn-white px-4 py-3">Buy This Book On FPT Book Store</a></p> *@
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <img src="~/home/images/book_1.png" alt="Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="p-3 bg-light">
+    <div class="container">
+        <h2 class="text-center p-3" id="lists-section">List Of Books</h2>
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="service h-100">
+                        <img class="w-100 p-4" src="~/uploads/@product.Image" width="100px" height="70%" alt="">
+                        <h3 class="fw-bold p-2 m-0">@product.Name</h3>
+                        <h3 class="p-2 mb-3 fw-light">@product.Price.ToString("C")</h3>
+                        <div class="row">
+                            <div class="col d-flex justify-content-center border p-2">
+                                @if (User.Identity?.IsAuthenticated ?? false)
+                                {
+                                    <a asp-controller="Cart" asp-action="Create" asp-route-id="@product.Id">Buy Book</a>
+                                }
+                                else
+                                {
+                                    <a asp-area="Identity" asp-page="/Account/Login">Buy Book</a>
+                                }
+                            </div>
+                            <div class="col d-flex justify-content-center border p-2">
+                                <a asp-controller="Home" asp-action="Details" asp-route-id="@product.Id">More Detail</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination d-flex justify-content-center p-3 m-0">
+        @for (int i = 1; i <= ViewBag.TotalPage; i++)
+        {
+            <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+    </ul>
+</nav>

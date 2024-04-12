@@ -1,0 +1,85 @@
+@model IEnumerable<Cart>
+@{
+    decimal total = 0;
+}
+@{
+    ViewData["Title"] = "My Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <div>
+        <section class="vh-100">
+            @* <form id="account" method="post"> *@
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    @* <div class="col-12 col-md-8 col-lg-6 col-xl-5"> *@
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <h3 class="mb-5">My Cart</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Book Name
+                                        </th>
+                                          <th>
+                                            Image
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Price)
+                                        </th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.IdBookNavigation.Name)
+                                            </td>
+                                            <td>
+                                                
+                                                <img src="~/uploads/@Html.DisplayFor(modelItem => item.IdBookNavigation.Image)" height="100px" width="100px" alt="">
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                                @{
+                                                    total += item.Price;
+                                                }
+                                            </td>
+                                            <td>
+                                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            @if (Model.Any())
+                            {
+                                <div class="mb-4">
+                                    <strong>Total Price: @total</strong>
+                                </div>
+                                <a type="button" class="btn btn-primary btn-lg btn-block mt-4" asp-controller="Order"
+                                    asp-action="Create">Checkout</a>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+@model FPTBook.Models.Order
+
+@{
+    ViewData["Title"] = "Create Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <div>
+        <section class="vh-100">
+            @* <form id="account" method="post"> *@
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    @* <div class="col-12 col-md-8 col-lg-6 col-xl-5"> *@
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <h3 class="mb-5">Create Order</h3>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-4">
+                                    <form asp-action="Create">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group" hidden>
+                                            <label asp-for="UserId" class="control-label"></label>
+                                            <input asp-for="UserId" value="#" class="form-control" />
+                                            <span asp-validation-for="UserId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group" hidden>
+                                            <label asp-for="Time" class="control-label"></label>
+                                            <input asp-for="Time" class="form-control" />
+                                            <span asp-validation-for="Time" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group" hidden>
+                                            <label asp-for="Total" class="control-label"></label>
+                                            <input asp-for="Total" value="0" class="form-control" />
+                                            <span asp-validation-for="Total" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Address" class="control-label"></label>
+                                            <input asp-for="Address" class="form-control" />
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group" hidden>
+                                            <label asp-for="Status" class="control-label"></label>
+                                            <input asp-for="Status" value="Approval" class="form-control" />
+                                            <span asp-validation-for="Status" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Create" class="btn btn-primary" />
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

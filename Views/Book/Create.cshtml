@@ -1,0 +1,102 @@
+@model FPTBook.Models.Book
+
+@{
+    Layout = "~/Views/Shared/adminLO.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+
+<body>
+
+    <h3 class="text-center mt-2 fw-bold">
+        <a asp-action="Index"><i class="float-start fas fa-arrow-left"></i></a>
+        Create Book
+    </h3>
+    <hr />
+    @* <div class="row"> *@
+    @* <div class="col-md-4"> *@
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group mb-2">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group mb-2">
+                    <label asp-for="Author" class="control-label"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group mb-2">
+                    <label asp-for="Quantity" class="control-label"></label>
+                    <input asp-for="Quantity" class="form-control" />
+                    <span asp-validation-for="Quantity" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group mb-2">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group mb-2">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col d-flex align-items-center">
+                @* <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div> *@
+                <div class="form-group">
+                    <label for="ImageFile">Choose an image</label>
+                    <input name="ImageFile" type="file" class="form-control-file"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group mb-3">
+                    <label asp-for="CatId" class="control-label"></label>
+                    <select asp-for="CatId" class="form-control" asp-items="ViewBag.CatId"></select>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+    @* </div> *@
+    @* </div> *@
+
+</body>
+
+</html>

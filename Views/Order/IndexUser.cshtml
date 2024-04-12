@@ -1,0 +1,86 @@
+@model IEnumerable<FPTBook.Models.Order>
+
+@{
+    ViewData["Title"] = "My Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <div>
+        <section class="vh-100">
+            @* <form id="account" method="post"> *@
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    @* <div class="col-12 col-md-8 col-lg-6 col-xl-5"> *@
+                    <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                        <div class="card-body p-5 text-center">
+                            <h3 class="mb-5">My Order</h3>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @* @Html.DisplayNameFor(model => model.Id) *@
+                                            ID
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Time)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Total)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Address)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Status)
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Id)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Time)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Total)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Address)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            <td>
+                                                 <a asp-action="Details" asp-controller="OrderDetail" asp-route-id="@item.Id"><i class="fas fa-eye"></i></a> 
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            <a type="button" class="btn btn-primary btn-lg btn-block mt-4" asp-controller="Home"
+                                asp-action="Index">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

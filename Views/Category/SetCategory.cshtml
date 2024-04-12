@@ -1,0 +1,52 @@
+@model FPTBook.Models.Category
+
+
+@{
+    Layout = "~/Views/Shared/adminLO.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h3 class="text-center mt-2 fw-bold">
+    <a asp-action="Index"><i class="float-start fas fa-arrow-left"></i></a>
+    Category
+</h3>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SetCategory">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group mb-2">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-2">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Status" class="control-label"></label>
+                <select class="form-select form-select-sm" asp-for="Status">
+                    <option>No</option>
+                    <option>Yes</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

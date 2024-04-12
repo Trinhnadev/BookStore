@@ -1,0 +1,19 @@
+@model FPTBook.Models.UserRoleViewModel
+
+@{
+    Layout = "~/Views/Shared/adminLO.cshtml";
+}
+
+<h3 class="text-center mt-2 fw-bold">
+    <a asp-action="Index"><i class="float-start fas fa-arrow-left"></i></a>
+    Manage Roles for @Model.User.UserName
+</h3>
+
+<form asp-action="SetRoles" method="post">
+    ID: <input asp-for="User.Id" name ="id" readonly/>
+    <div class="form-group mt-2 mb-3">
+        <label for="roleNames" class="mb-2">Roles:</label>
+        <select asp-for="Roles" asp-items="new SelectList(Model.Roles)" multiple class="form-control"></select>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

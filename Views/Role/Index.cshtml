@@ -1,0 +1,59 @@
+@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Lists of Role";
+    Layout = "~/Views/Shared/adminLO.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    @if (User.IsInRole("Admin"))
+                                {
+    <p>
+        <a type="button" asp-action="Create" class="btn btn-primary mt-2">Create New Role</a>
+    </p>
+    }
+    <div class="card mb-4 mt-5">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            List of Roles
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table-success">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model)
+                    {
+                        <tr>
+                            <td>@role.Name</td>
+                            <td>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+
+                                    <a asp-action="Edit" asp-route-id="@role.Id"><i class="fas fa-edit"></i></a> 
+                                    <a asp-action="Delete" onclick="return confirm('Are you sure?')" asp-route-id="@role.Id"><i
+                                    class="fas fa-trash-alt"></i></a>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

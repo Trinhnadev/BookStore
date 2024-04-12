@@ -1,0 +1,63 @@
+@model FPTBook.Models.Order
+
+@{
+    ViewData["Title"] = "My Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+
+<body>
+    <section class="vh-100">
+
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                @* <div class="col-12 col-md-8 col-lg-6 col-xl-5"> *@
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 ">
+                        <h3 class="mb-5 text-center">Order Details</h3>
+                        <p>Order ID: @Model.Id</p>
+                        <p>Order Date: @Model.Time</p>
+                        <!-- Add more order details as needed -->
+
+                        <h3>Order Items</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    @* <th>Quantity</th> *@
+                                    <th>Image</th>
+                                    <th>Price</th>
+
+
+                                    @* <th>Total Price</th> *@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var orderDetail in Model.OrderDetails)
+                                {
+                                    <tr>
+                                        <td>@orderDetail.IdBookOrderNavigation.Name</td>
+                                        @* <td>@orderDetail.Quantity</td> *@
+                                        <td><img src="~/uploads/@orderDetail.IdBookOrderNavigation.Image" height="100px" width="100px" alt=""></td>
+
+                                        <td>@orderDetail.Price</td>
+                                        @* <td>@(orderDetail.Quantity * orderDetail.Price)</td> *@
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <a type="button" class="btn btn-primary btn-lg btn-block mt-4" asp-controller="Home"
+                                asp-action="Index">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

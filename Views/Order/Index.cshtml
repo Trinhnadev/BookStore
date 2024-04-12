@@ -1,0 +1,81 @@
+@model IEnumerable<FPTBook.Models.Order>
+
+@{
+    Layout = "~/Views/Shared/adminLO.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+    <div class="card mb-4 mt-5">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            List of Record
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table-success">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Time)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Total)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Time)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Total)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @if (item.Status != "Approval")
+                                {
+                                    <a type="button" class="btn btn-warning" asp-action="SetOrder" asp-route-id="@item.Id"
+                                    onclick="return confirm('are you sure?')">Approval</a>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-warning" disabled>Approval</button>
+                                }
+                                </td>
+                        </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
